@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption: string;
+}
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="guide-image">
+  <Image
+    src={src}
+    alt={alt}
+    widths={[640, 960, 1440]}
+    sizes="(max-width: 768px) 100vw, 768px"
+    loading="lazy"
+  />
+  <figcaption>
+    {caption}{" "}
+    <a
+      href={src.src}
+      target="_blank"
+      rel="noopener"
+      aria-label={`View larger image: ${alt} (opens a new tab)`}
+    >
+      View larger
+    </a>
+  </figcaption>
+</figure>

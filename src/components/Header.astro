@@ -1,0 +1,34 @@
+---
+import Brand from "./Brand.astro";
+const links = [
+  { href: "/tour/", label: "Product tour" },
+  { href: "/docs/", label: "Guides" },
+  { href: "/about/", label: "Open source" },
+];
+---
+
+<header class="border-b border-line bg-paper">
+  <nav
+    class="wrap flex min-h-20 flex-wrap items-center justify-between gap-4 py-4"
+    aria-label="Main navigation"
+  >
+    <Brand />
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class="hover:underline underline-offset-4"
+          aria-current={Astro.url.pathname === href ? "page" : undefined}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="/docs/getting-started/installation/"
+        class="hidden sm:inline-flex button button-primary min-h-10 py-2"
+      >
+        Get started <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </nav>
+</header>

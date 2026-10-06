@@ -1,0 +1,20 @@
+@theme {
+  --font-sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --color-ink: #193b32;
+  --color-muted: #52665e;
+  --color-paper: #faf9f5;
+  --color-forest: #285943;
+  --color-sand: #efdfb1;
+  --color-line: #dce2d9;
+  --color-accent-50: #f0f7f1;
+  --color-accent-100: #dceade;
+  --color-accent-200: #b8d4bd;
+  --color-accent-300: #92b69c;
+  --color-accent-400: #659477;
+  --color-accent-500: #407354;
+  --color-accent-600: #285943;
+  --color-accent-700: #224936;
+  --color-accent-800: #1c3a2b;
+  --color-accent-900: #172f24;
+  --color-accent-950: #0b1d15;
+}

@@ -1,0 +1,11 @@
+# Product screenshots
+
+Captured from a local, isolated Boopity 1.0.1 build on 2026-10-06 (application revision `39e719daa04c25c17445727ecd5fbf18e8586708`).
+
+The example business is **Maple & Paws**. All clients, pets, bookings, and `example.test` addresses are fictional. Email delivery is intercepted locally and outbound provider calls are disabled. No production account or live demo is used.
+
+- `bookings.png`: sitter weekly calendar.
+- `services.png`: services and rates offered to clients.
+- `clients.png`: sitter client list.
+
+These are real application captures, not mockups. Refresh them when the interface changes. Use Astro image components so the built site receives optimized sizes and formats. Capture only the product UI; exclude browser chrome, credentials, private links, and unrelated desktop content.

@@ -1,0 +1,22 @@
+@layer base, starlight, theme, components, utilities;
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./tokens.css";
+
+:root {
+  --sl-content-width: 48rem;
+  --sl-text-5xl: 2.5rem;
+}
+.sl-markdown-content img {
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 0.65rem;
+}
+.sl-markdown-content .guide-image {
+  margin-block: 1.75rem;
+}
+.sl-markdown-content .guide-image figcaption {
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-2);
+  margin-top: 0.6rem;
+}
