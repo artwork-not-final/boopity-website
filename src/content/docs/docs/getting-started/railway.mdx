@@ -1,0 +1,87 @@
+---
+title: Install on Railway
+description: Launch Boopity on Railway, open your private setup link, and set up your pet-care business.
+---
+
+import { LinkButton } from "@astrojs/starlight/components";
+import GuideImage from "../../../../components/GuideImage.astro";
+import deploy from "../../../../assets/screenshots/railway/deploy.jpg";
+import service from "../../../../assets/screenshots/railway/service.jpg";
+import account from "../../../../assets/screenshots/railway/account.jpg";
+import email from "../../../../assets/screenshots/railway/email.jpg";
+
+Railway runs Boopity for you. You won’t need Terminal, Docker on your computer, or a separate database.
+
+## Before you start
+
+- **Hosting:** Railway’s Hobby plan starts at **$5 per month**, including $5 of resource usage. That is a minimum, not a spending cap. Check [current pricing](https://railway.com/pricing) before deploying.
+- **Email:** Have a Resend or SMTP account and an approved sender address ready. Boopity uses this service to send sign-in codes. [Email setup help](https://github.com/artwork-not-final/boopity/blob/v1.0.2/docs/guides/email-setup.md).
+
+Boopity is free. Hosting, email, domains, and payment-processing fees are separate. Boopity may receive referral credit or commission when you deploy through this template.
+
+## Deploy Boopity
+
+<LinkButton href="https://railway.com/new/template/boopity" icon="external">
+  Deploy on Railway
+</LinkButton>
+
+Sign in to Railway or create an account. Choose **New Project** and click **Deploy**. The Boopity service should already say **Ready to be deployed**; leave its configuration unchanged. If Railway asks you to choose a plan or add billing details, review the cost before continuing.
+
+<GuideImage
+  src={deploy}
+  alt="Railway’s Deploy Boopity screen with New Project selected, the service ready to be deployed, and a Deploy button."
+  caption="No configuration values to enter."
+/>
+
+Wait for deployment to finish, then click the **Boopity** service. **Deployment successful** means your site is running. Railway supplies its own HTTPS address; you can add a custom domain later.
+
+## Open your private setup link
+
+In the service’s **Deployments** tab, select **View logs**. Find **Finish setup** and open the link beside it. If it isn’t clickable, copy the complete link into your browser’s address bar. On the welcome page, choose **Start setup**.
+
+<GuideImage
+  src={service}
+  alt="The Boopity service on Railway showing Deployment successful and the View logs button."
+  caption="View logs contains your private Finish setup link."
+/>
+
+:::caution[Keep this link private]
+It gives access to setup. Don’t share it or a screenshot of the logs. The ordinary website address won’t unlock a new installation.
+:::
+
+If the link expires **before you start**, use the deployment’s three-dot menu to **Restart**, then open the new link in its logs. If you’ve already started, return in the same browser. [Help getting back into setup](/docs/help/troubleshooting/#i-cant-get-back-into-setup).
+
+## Your account
+
+Enter your name and an email address you can check, then select **Save and continue**. This will be your owner account.
+
+<GuideImage
+  src={account}
+  alt="Boopity’s Your account step with Your name, Your email, and Save and continue."
+  caption="Use your own name and email."
+/>
+
+## Email delivery
+
+Choose **Resend** or **SMTP**. Enter your approved sender address and the credentials from your email service, then select **Save and continue**. The help sections on this page explain each option. Keep credentials private and enter them only in your own installation.
+
+<GuideImage
+  src={email}
+  alt="Email delivery with Resend selected and empty Sender email and Resend API key fields."
+  caption="Connect the email service that will send your sign-in codes."
+/>
+
+## Finish the wizard
+
+- **Business:** Add your business name, colors, currency, and time zone.
+- **Verify your inbox:** Request a code and enter it to create your owner account. Check spam if it doesn’t arrive; wait for the timer before resending.
+- **Google sign-in:** Optional. Skip it for now to use email codes, or connect Google with the same email as your owner account.
+- **Review & finish:** Check your details and finish setup. You’ll arrive at **Bookings** with a getting-started checklist.
+
+**Next:** [Make your first booking](/docs/getting-started/first-booking/), then [invite a client](/docs/guides/client-portal/).
+
+## Keep your records safe
+
+Your records and private keys live on the included Railway volume. Keep one running instance and don’t delete that volume. **Automatic backups are not included.** Set up [backups](/docs/help/backups-and-updates/) before using Boopity for real clients.
+
+The template uses a fixed release; updates are your choice, not automatic. You look after your Railway account, email service, backups, and updates. See [community support](/about/#support) if you need help.

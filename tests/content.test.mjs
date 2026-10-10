@@ -19,3 +19,25 @@ test("visitor pages offer a screenshot tour, not a public demo", async () => {
   );
   assert.doesNotMatch(links, /demo\.boopity\.com/);
 });
+
+test("Railway walkthrough links the public template and explains operator responsibilities", async () => {
+  const guide = await readFile(
+    new URL(
+      "../src/content/docs/docs/getting-started/railway.mdx",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(guide, /https:\/\/railway\.com\/new\/template\/boopity/);
+  assert.match(guide, /https:\/\/railway\.com\/pricing/);
+  assert.match(guide, /referral credit or commission/i);
+  assert.match(guide, /minimum, not a spending cap/i);
+  assert.match(guide, /Keep this link private/);
+  assert.match(guide, /Automatic backups are not included/);
+  assert.match(guide, /updates are your choice, not automatic/i);
+  assert.equal((guide.match(/<GuideImage\b/g) || []).length, 4);
+  assert.doesNotMatch(
+    guide,
+    /boopity-production-2c3f|owner@example\.test|setup_token=/,
+  );
+});

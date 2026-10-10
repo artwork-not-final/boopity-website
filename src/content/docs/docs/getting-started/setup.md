@@ -11,7 +11,7 @@ Enter your name and sign-in email. You’ll need access to that inbox for verifi
 
 ## 2. Email delivery
 
-Connect SMTP or Resend so Boopity can send sign-in codes. Have your provider’s credentials and approved sender address ready. Follow the [email setup guide](https://github.com/artwork-not-final/boopity/blob/v1.0.1/docs/guides/email-setup.md) for help.
+Connect SMTP or Resend so Boopity can send sign-in codes. Have your provider’s credentials and approved sender address ready. Follow the [email setup guide](https://github.com/artwork-not-final/boopity/blob/v1.0.2/docs/guides/email-setup.md) for help.
 
 ## 3. Business
 
