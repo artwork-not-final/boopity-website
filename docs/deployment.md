@@ -34,6 +34,8 @@ Use these settings:
 
 Enable branch previews. Set the build variables `ASTRO_TELEMETRY_DISABLED=1` and `WRANGLER_SEND_METRICS=false`. Wrangler is pinned in `package.json` and the lockfile. Cloudflare's Git integration manages deployment authentication; do not add credentials to Git or the public site.
 
+Keep the empty `previews` block in `wrangler.json`: [`wrangler preview` requires it](https://developers.cloudflare.com/workers/previews/configuration/#wrangler-configuration-file). Static assets stay at the top level. This website has no production or preview data bindings or application secrets.
+
 The first deploy publishes to the assigned `workers.dev` address. It does not move `boopity.com`. Verify the deployed site before connecting a custom domain, including HTTPS, headers, redirects, the 404 response, images, and documentation search. Preview links should not be treated as private; restrict access or prevent search indexing before sharing them widely.
 
 GitHub CI validates pull requests without deployment credentials. Once connected, Cloudflare runs the same validation before deploying `main`, and uses the preview command for other enabled branches.

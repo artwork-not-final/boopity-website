@@ -8,6 +8,8 @@ test("Cloudflare publishes only static output without claiming a domain", async 
   );
   assert.equal(config.name, "boopity-website");
   assert.equal(config.workers_dev, true);
+  // Required by the connected build's `wrangler preview` command. No bindings.
+  assert.deepEqual(config.previews, {});
   assert.deepEqual(config.assets, {
     directory: "./dist",
     html_handling: "force-trailing-slash",
@@ -19,6 +21,7 @@ test("Cloudflare publishes only static output without claiming a domain", async 
     "assets",
     "compatibility_date",
     "name",
+    "previews",
     "workers_dev",
   ]);
 });
