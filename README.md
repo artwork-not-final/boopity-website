@@ -20,7 +20,7 @@ npm run verify
 npm run preview
 ```
 
-`verify` checks types, formatting, checker tests, the static build, and built-page links, anchors, heading structure, and image descriptions/dimensions. CI also runs the dependency audit. Review keyboard navigation, search, and desktop/mobile layouts in a browser when changing the UI. External links are not fetched by the local link checker.
+`verify` checks types, formatting, tests, the static build, built-page links, anchors, heading structure, image descriptions/dimensions, and a Cloudflare deployment dry run. It does not publish anything or require Cloudflare credentials. CI also runs the dependency audit. Review keyboard navigation, search, and desktop/mobile layouts in a browser when changing the UI. External links are not fetched by the local link checker.
 
 ## Where things live
 
@@ -32,8 +32,10 @@ npm run preview
 | `src/layouts/`            | Marketing document shell and metadata                           |
 | `src/styles/`             | Shared theme tokens and separate marketing/documentation styles |
 | `src/assets/screenshots/` | Reviewed, fictional-data product screenshots                    |
-| `src/lib/site.ts`         | Product version and shared links                                |
+| `src/lib/site.ts`         | Shared site metadata and links                                  |
 | `astro.config.mjs`        | Canonical origin, guide navigation, integrations                |
+| `wrangler.json`           | Cloudflare static-asset routing and deployment name             |
+| `public/_headers`         | Static response headers and caching for hashed assets           |
 | `scripts/`, `tests/`      | Built-site checks and checker tests                             |
 
 ## Adding a walkthrough
@@ -44,11 +46,15 @@ npm run preview
 4. Store screenshots under `src/assets/screenshots/` and record their provenance in its README. Use `GuideImage.astro` in MDX for responsive image generation, descriptive alt text, and captions.
 5. Run `npm run format` and `npm run verify`. Check the rendered guide at desktop and mobile widths.
 
-The first guides and screenshots describe Boopity 1.0.1. Hosting instructions link to that tagged application's technical guide. Update content and screenshots together when behavior changes; do not imply an invitation-only demo is an open playground.
+The guides and screenshots describe Boopity 1.0.1. Update content and screenshots together when behavior changes. The product tour uses screenshots; there is no public demo.
+
+Keep visitor copy brief and concrete. Say what people can do, use the actual UI labels in guides, and put technical details on the relevant help page. Keep essential safety instructions without repeating them across marketing pages.
 
 ## Publication
 
-**Deployment is not configured.** `boopity.com` is the intended canonical domain in the build configuration, not evidence that this repository has been published there. Review the content and choose a static host before making DNS or production changes. Publish only `dist/`, never the repository or `node_modules/` directory. Verify HTTPS, cache behavior, headers, the 404 page, and documentation search on the chosen host.
+The repository is configured for [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/#if-you-have-a-static-site). It publishes only `dist/`, with no server entry point, Astro server adapter, database, or application credentials. The output remains portable to other static hosts.
+
+**Cloudflare connection and publication are still pending.** The configuration does not claim any custom domains. `boopity.com` is the intended canonical origin, not evidence that the website is live there. See [the deployment guide](docs/deployment.md) for preview and publication steps.
 
 ## Dependency maintenance
 

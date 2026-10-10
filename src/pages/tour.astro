@@ -3,71 +3,250 @@ import MarketingLayout from "../layouts/MarketingLayout.astro";
 import { Image } from "astro:assets";
 import bookings from "../assets/screenshots/bookings.png";
 import services from "../assets/screenshots/services.png";
-import clients from "../assets/screenshots/clients.png";
+import petCare from "../assets/screenshots/pet-care.png";
+import clientBooking from "../assets/screenshots/client-booking.png";
+import rules from "../assets/screenshots/booking-rules.png";
+import payments from "../assets/screenshots/payments.png";
+import branding from "../assets/screenshots/branding.png";
+
 const sections = [
   {
-    title: "Start with your services.",
-    text: "Set the price and duration for a walk, a visit, or a stay. Decide which services clients can book through their portal.",
+    id: "calendar",
+    label: "Calendar",
+    title: "See what’s coming up.",
+    text: "Your schedule in week, month, or list view.",
+    features: [
+      "Search by client, pet, or service across all dates.",
+      "Open a booking for its messages, payments, and history.",
+      "Add upcoming visits or record past, ad-hoc bookings.",
+    ],
+    image: bookings,
+    alt: "The sitter’s weekly calendar with three example pet-care bookings and week, month, and list controls.",
+    caption: "The sitter’s weekly calendar",
+  },
+  {
+    id: "services",
+    label: "Services & rates",
+    title: "Set your services and prices.",
+    text: "Build a service list that fits the way you work.",
+    features: [
+      "Offer timed visits or all-day care.",
+      "Set your rates and pricing for additional pets.",
+      "Choose which services clients can book in the portal.",
+    ],
     image: services,
     alt: "Services and rates for the fictional Maple & Paws business, including dog walking and drop-in visits.",
+    caption: "Services offered in the client portal",
   },
   {
-    title: "Keep the important details together.",
-    text: "Add a client and their pets. Keep contact details, care instructions, and your private notes in one place.",
-    image: clients,
-    alt: "The Clients and pets page with fictional clients Alex Example, Casey Harper, and Taylor Brooks.",
+    id: "clients-and-pets",
+    label: "Clients & pets",
+    title: "Get to know each pet.",
+    text: "Keep the details you need before you arrive.",
+    features: [
+      "Group pets under their client’s contact and emergency details.",
+      "Record feeding instructions, medications, allergies, and care needs.",
+      "Keep care details and private sitter notes out of the client portal.",
+    ],
+    image: petCare,
+    alt: "Scout’s pet record, with separate sections for health, daily care, and private sitter notes.",
+    caption: "A pet’s care details in the sitter workspace",
   },
   {
-    title: "Know what’s on the calendar.",
-    text: "Switch between week, month, and list views. Open a booking to see its details, recorded payments, and history.",
-    image: bookings,
-    alt: "The weekly booking calendar displaying three example pet-care bookings.",
+    id: "client-portal",
+    label: "Client portal",
+    title: "Let clients book with you.",
+    text: "Invite clients to their own view of your business.",
+    features: [
+      "Clients choose their pets, a service, and an available time.",
+      "They can see their bookings and cancel within your notice period.",
+      "Only their own pets and bookings are visible to them.",
+    ],
+    image: clientBooking,
+    alt: "The client booking form with Scout selected for a dog walk, an available time, and a summary of the rate and cancellation notice.",
+    caption: "What an invited client sees when booking",
+  },
+  {
+    id: "booking-rules",
+    label: "Booking rules",
+    title: "Stay in control of your schedule.",
+    text: "Choose when and how clients can book.",
+    features: [
+      "Set opening hours, unavailable dates, and advance notice.",
+      "Review each request or confirm bookings automatically.",
+      "Set a cancellation deadline and review cancelled bookings for payment follow-up.",
+    ],
+    image: rules,
+    alt: "Portal and rules settings showing booking approval, notice periods, and weekday availability.",
+    caption: "Availability and booking rules",
+    note: "Boopity currently supports one booking or pending request at a time.",
+  },
+  {
+    id: "payments",
+    label: "Payments",
+    title: "Keep track of what’s been paid.",
+    text: "Record payments yourself, or let clients pay online.",
+    features: [
+      "Record cash, bank transfers, and other manual payment methods.",
+      "Connect your own Stripe account for online checkout.",
+      "See payment activity across bookings, with filters and refund records.",
+    ],
+    image: payments,
+    alt: "The Payments page with three fictional cash and bank-transfer records, filters, and totals received.",
+    caption: "Payment activity across all bookings",
+  },
+  {
+    id: "your-brand",
+    label: "Your brand",
+    title: "Make it feel like your business.",
+    text: "Your name and colors, from sign-in to the client portal.",
+    features: [
+      "Add your business name and logo.",
+      "Choose a color preset or your own primary and accent colors.",
+      "Set your time zone and currency, and update them in Settings.",
+    ],
+    image: branding,
+    alt: "Business settings for Maple & Paws, including its name, time zone, currency, colors, and logo upload.",
+    caption: "Business appearance settings",
+    note: "A small “Powered by Boopity” credit stays in the footer.",
   },
 ];
 ---
 
 <MarketingLayout
-  title="A look around Boopity"
-  description="See how Boopity brings services, clients, pets, bookings, and payments together."
+  title="See how Boopity works"
+  description="Explore Boopity’s calendar, pet-care records, client booking portal, payment tracking, and business branding with real product screenshots."
 >
-  <div class="wrap py-14 sm:py-20">
-    <p class="eyebrow mb-4 text-forest">The product tour</p>
+  <div class="wrap pt-14 pb-10 sm:pt-20 sm:pb-12">
     <h1 class="display max-w-2xl text-5xl sm:text-6xl">
-      From the first hello
-      <br />
-      to the next visit.
+      A closer look at Boopity.
     </h1>
-    <p class="mt-6 max-w-xl text-lg text-muted">
-      A few familiar tasks, with everything where you need it. These are real
-      screens from Boopity 1.0.1, using fictional data.
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+      Manage your schedule, care details, and payments. Give clients a place to
+      book.
     </p>
+    <nav aria-label="Explore product features" class="mt-8">
+      <ul class="flex flex-wrap gap-2">
+        {[
+          ...sections.map(({ id, label }) => ({ id, label })),
+          { id: "getting-started", label: "Getting started" },
+        ].map(({ id, label }) => (
+          <li>
+            <a
+              href={`#${id}`}
+              class="inline-flex min-h-11 items-center rounded-lg border border-line bg-white px-4 py-2 text-sm font-medium transition-colors hover:border-forest hover:bg-accent-50"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
-  {sections.map((section, i) => (
-    <section class="wrap mb-16 grid items-start gap-8 lg:grid-cols-[.65fr_1.35fr]">
-      <div>
-        <p class="eyebrow mb-4 text-muted">0{i + 1}</p>
-        <h2 class="display text-4xl">{section.title}</h2>
-        <p class="mt-5 leading-relaxed text-muted">{section.text}</p>
+  {sections.map((section) => (
+    <section
+      id={section.id}
+      aria-labelledby={`${section.id}-heading`}
+      class="wrap scroll-mt-8 border-t border-line py-12 sm:py-16"
+    >
+      <div class="grid items-start gap-8 lg:grid-cols-[.6fr_1.4fr] lg:gap-12">
+        <div>
+          <h2 id={`${section.id}-heading`} class="display text-4xl">
+            {section.title}
+          </h2>
+          <p class="mt-5 leading-relaxed text-muted">{section.text}</p>
+          <ul class="mt-6 space-y-3">
+            {section.features.map((feature) => (
+              <li class="flex items-start gap-3 leading-relaxed">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  class="mt-1 size-5 shrink-0 text-forest"
+                >
+                  <path d="m5 12 4 4L19 6" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          {section.note && (
+            <p class="mt-6 border-l-2 border-sand pl-4 text-sm leading-relaxed text-muted">
+              {section.note}
+            </p>
+          )}
+        </div>
+        <figure class="min-w-0">
+          <Image
+            src={section.image}
+            alt={section.alt}
+            widths={[640, 960, 1440]}
+            sizes="(max-width: 1023px) calc(100vw - 40px), 780px"
+            loading="lazy"
+            class="h-auto w-full rounded-xl border border-line shadow-sm"
+          />
+          <figcaption class="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 text-sm text-muted">
+            <span>{section.caption}</span>
+            <a
+              href={section.image.src}
+              target="_blank"
+              rel="noopener"
+              class="text-link"
+              aria-label={`View full screenshot: ${section.caption} (opens a new tab)`}
+            >
+              View full screenshot <span aria-hidden="true">↗</span>
+            </a>
+          </figcaption>
+        </figure>
       </div>
-      <Image
-        src={section.image}
-        alt={section.alt}
-        widths={[640, 960, 1440]}
-        sizes="(max-width: 1024px) 100vw, 800px"
-        class="w-full rounded-xl border border-line shadow-sm"
-      />
     </section>
   ))}
-  <section class="wrap mb-20 border-t border-line pt-10">
-    <h2 class="text-2xl font-semibold">Ready to try your first booking?</h2>
-    <p class="mt-3 mb-6 text-muted">
-      Our guide takes you from adding a service to recording a payment.
-    </p>
-    <a
-      href="/docs/getting-started/first-booking/"
-      class="button button-primary"
-    >
-      Follow the walkthrough <span aria-hidden="true">→</span>
-    </a>
+  <section
+    id="getting-started"
+    aria-labelledby="getting-started-heading"
+    class="scroll-mt-8 border-y border-line bg-accent-50 py-12 sm:py-16"
+  >
+    <div class="wrap">
+      <h2 id="getting-started-heading" class="display text-4xl">
+        Start with a little guidance.
+      </h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-3">
+        <div>
+          <h3 class="text-lg font-semibold">A guided setup</h3>
+          <p class="mt-3 leading-relaxed text-muted">
+            Add your account, connect email, and set up your business. A
+            checklist then helps you add your first service, client, pet, and
+            booking.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold">Simple sign-in</h3>
+          <p class="mt-3 leading-relaxed text-muted">
+            Sign in with a code sent to your email. Connect Google to offer that
+            option too, for you and your invited clients.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold">Your own installation</h3>
+          <p class="mt-3 leading-relaxed text-muted">
+            Run Boopity with Docker or Node on your chosen host. There’s no
+            Boopity subscription; you manage hosting, updates, and backups.
+          </p>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-5">
+        <a
+          href="/docs/getting-started/installation/"
+          class="button button-primary"
+        >
+          Install Boopity <span aria-hidden="true">→</span>
+        </a>
+        <a href="/docs/getting-started/first-booking/" class="text-link">
+          Follow the first-booking guide
+        </a>
+      </div>
+    </div>
   </section>
 </MarketingLayout>

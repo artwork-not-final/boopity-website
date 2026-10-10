@@ -2,22 +2,18 @@
 import { Image } from "astro:assets";
 import MarketingLayout from "../layouts/MarketingLayout.astro";
 import bookings from "../assets/screenshots/bookings.png";
-import { site } from "../lib/site";
 const features = [
   {
-    number: "01",
-    title: "A little order for a busy day.",
-    text: "Keep visits, walks, and pet-sitting bookings together. See your week, find a booking, and check what’s next.",
+    title: "Bookings",
+    text: "Plan visits and walks. Let clients book within your hours and cancellation rules.",
   },
   {
-    number: "02",
-    title: "Know the pets behind the booking.",
-    text: "Keep client details and pet-care notes close at hand, without searching through messages.",
+    title: "Clients & pets",
+    text: "Keep contact details, pet profiles, and care notes together.",
   },
   {
-    number: "03",
-    title: "Payments, your way.",
-    text: "Record cash and other payments, or connect your own Stripe account for online checkout.",
+    title: "Payments",
+    text: "Record payments yourself or connect Stripe for online checkout.",
   },
 ];
 ---
@@ -36,8 +32,7 @@ const features = [
         More time for <span class="italic">the pets.</span>
       </h1>
       <p class="mt-7 max-w-md text-lg leading-relaxed text-muted">
-        Your clients, their pets, and the day’s bookings. Together on a website
-        that belongs to your business.
+        Manage bookings, pets, and payments on your own pet-sitting website.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a
@@ -47,18 +42,14 @@ const features = [
           Get started <span aria-hidden="true">↗</span>
         </a>
         <a class="button button-secondary" href="/tour/">
-          Take a look around
+          See how it works
         </a>
       </div>
       <p class="mt-5 text-sm text-muted">
-        Open source. No Boopity subscription.
+        Free, open-source software. Hosting and service fees are separate.
       </p>
     </div>
     <figure class="min-w-0 rounded-2xl border border-[#ccd8ca] bg-[#e5ecdf] p-4 sm:p-6">
-      <div class="mb-4 flex items-center justify-between gap-3 text-sm">
-        <span class="font-semibold">A calmer kind of busy.</span>
-        <span class="text-muted">The sitter workspace</span>
-      </div>
       <Image
         src={bookings}
         alt="Boopity’s weekly booking calendar with dog walking, a drop-in visit, and pet sitting for fictional clients."
@@ -69,52 +60,25 @@ const features = [
         class="w-full rounded-lg border border-line shadow-sm"
       />
       <figcaption class="mt-4 text-xs text-muted">
-        Boopity {site.applicationVersion} · Example business and fictional pets
+        Your weekly calendar
       </figcaption>
     </figure>
   </section>
-  <section
-    class="border-y border-line bg-white"
-    aria-label="What makes Boopity different"
-  >
-    <div class="wrap grid gap-6 py-7 text-sm sm:grid-cols-3">
-      <p>
-        <strong class="block text-base">Your business, your name</strong>
-        <span class="text-muted">Add your logo and choose your colors.</span>
-      </p>
-      <p>
-        <strong class="block text-base">Your hosting, your data</strong>
-        <span class="text-muted">
-          One installation for one pet-care business.
-        </span>
-      </p>
-      <p>
-        <strong class="block text-base">Your way of working</strong>
-        <span class="text-muted">
-          Set booking hours and cancellation rules.
-        </span>
-      </p>
-    </div>
-  </section>
-  <section class="wrap py-20" aria-labelledby="everyday">
+  <section class="wrap border-t border-line py-16" aria-labelledby="everyday">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-5">
       <div>
-        <p class="eyebrow mb-4 text-forest">The everyday essentials</p>
         <h2 id="everyday" class="display max-w-lg text-4xl sm:text-5xl">
-          Less keeping track.
-          <br />
-          More taking care.
+          Keep the day organized.
         </h2>
       </div>
       <a href="/tour/" class="text-link">
-        Explore Boopity <span aria-hidden="true">↗</span>
+        Product tour <span aria-hidden="true">↗</span>
       </a>
     </div>
     <div class="grid gap-8 md:grid-cols-3">
       {features.map((feature) => (
         <article class="border-t border-line pt-6">
-          <span class="text-sm font-semibold text-muted">{feature.number}</span>
-          <h3 class="mt-5 max-w-xs text-xl font-semibold leading-snug">
+          <h3 class="max-w-xs text-xl font-semibold leading-snug">
             {feature.title}
           </h3>
           <p class="mt-3 text-base leading-relaxed text-muted">
@@ -130,48 +94,22 @@ const features = [
   >
     <div class="grid gap-8 md:grid-cols-2 md:gap-16">
       <div>
-        <p class="eyebrow mb-4">A small business deserves its own space</p>
         <h2 id="ownership" class="display text-4xl sm:text-5xl">
-          Boopity is yours
-          <br />
-          to make your own.
+          Make it your own.
         </h2>
       </div>
       <div>
         <p class="text-lg leading-relaxed">
-          Install it on your chosen host, connect email delivery, and follow the
-          setup wizard. Clients can then sign in to request bookings and manage
-          their visits.
-        </p>
-        <p class="mt-4 text-sm leading-relaxed">
-          The software is free to use. Hosting, email delivery, and
-          payment-processing fees may still apply. You’re responsible for
-          updates and backups; Boopity is community-supported.
+          Your business name, logo, and colors. Install Boopity on your chosen
+          host and follow the setup wizard.
         </p>
         <a
           href="/docs/getting-started/installation/"
           class="text-link mt-5 inline-block"
         >
-          What you’ll need to get started
+          Installation guide
         </a>
       </div>
     </div>
-  </section>
-  <section
-    class="wrap mb-20 grid items-center gap-8 sm:grid-cols-[1fr_auto]"
-    aria-labelledby="try"
-  >
-    <div>
-      <h2 id="try" class="text-3xl font-semibold">
-        See if it fits your day.
-      </h2>
-      <p class="mt-3 max-w-xl text-muted">
-        Explore the product tour, or open the demo’s sign-in page. Demo access
-        is invitation-only for now.
-      </p>
-    </div>
-    <a class="button button-secondary" href={site.demo}>
-      Open the demo <span aria-hidden="true">↗</span>
-    </a>
   </section>
 </MarketingLayout>

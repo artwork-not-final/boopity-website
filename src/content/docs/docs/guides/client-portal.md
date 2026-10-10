@@ -3,24 +3,24 @@ title: Invite your clients
 description: Let clients view their pets, request bookings, and manage visits on your website.
 ---
 
-Clients sign in to your business’s website, not to a shared Boopity account. Each invitation belongs to one household and email address.
+Invite clients to book and manage visits on your website. Each invitation is tied to their email address.
 
 ## Before you invite anyone
 
-1. In **Services & rates**, open each service clients should see and offer it in the portal.
+1. In **Services & rates**, choose which services to offer in the portal.
 2. In **Portal & rules**, set your opening hours, booking notice, and cancellation notice.
 3. Choose whether bookings need your approval or are confirmed immediately.
 4. Enable the client portal.
 
-Without opening hours, clients won’t see available appointment times. Bookings must also fit your other rules and existing reservations.
+Set opening hours first, or clients won’t see available times.
 
 ## Share an invitation
 
-Open a client under **Clients & pets**, then select **Portal access**. Check their email address and create an invitation link.
+1. Open the client’s **Portal access** tab and check their email.
+2. Create an invitation link and send it yourself by email or message. Boopity does not send it automatically.
+3. The client signs in with that email and accepts the invitation, using an email code or Google if enabled.
 
-Send that link to the client yourself, using your usual email or messaging app. **Boopity does not send invitation emails automatically.** Keep the link private: it works once and expires after seven days. Creating a replacement invalidates the previous link.
-
-Your client opens the link, signs in with the invited email, and accepts the invitation. They can use an emailed code or Google if you have enabled it. A different email address cannot accept the invitation.
+Keep invitation links private. They work once, expire after seven days, and become invalid when replaced.
 
 ## What clients can do
 
@@ -29,16 +29,16 @@ Your client opens the link, signs in with the invited email, and accepts the inv
 - Cancel within the notice period saved with their booking.
 - Pay online when you have connected Stripe and enabled online payments.
 
-Clients contact you to change pet details. Private care and client notes stay in the sitter workspace.
+Clients contact you to change pet details. Your private notes stay private.
 
 ## Cancellations and payments
 
-After the cancellation deadline, the client needs to contact you. You can record an exception from the sitter workspace.
+After the cancellation deadline, clients must contact you for an exception.
 
-**Cancelling a booking does not refund a payment.** Review the cancellation and arrange any refund separately. Marking a cancellation reviewed records your review; it does not move money.
+**Cancellation does not issue a refund.** Arrange refunds separately; marking a cancellation reviewed does not move money.
 
 ## Removing access
 
-Use the client’s portal controls to revoke access. Archiving a client or changing their email also revokes access; reactivating the client does not automatically restore it.
+Revoke access from **Portal access**. Archiving a client or changing their email also revokes it; reactivating the client does not restore access.
 
-Turning off the whole portal pauses client access, but you can still use your sitter workspace.
+Turning the portal off pauses client access, not your sitter workspace.
