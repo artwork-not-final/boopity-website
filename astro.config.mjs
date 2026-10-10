@@ -29,6 +29,7 @@ export default defineConfig({
           label: "Getting started",
           items: [
             { slug: "docs/getting-started/installation" },
+            { slug: "docs/getting-started/railway" },
             { slug: "docs/getting-started/setup" },
             { slug: "docs/getting-started/first-booking" },
           ],

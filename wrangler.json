@@ -3,6 +3,7 @@
   "name": "boopity-website",
   "compatibility_date": "2026-10-10",
   "workers_dev": true,
+  "previews": {},
   "assets": {
     "directory": "./dist",
     "html_handling": "force-trailing-slash",

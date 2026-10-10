@@ -46,7 +46,7 @@ npm run preview
 4. Store screenshots under `src/assets/screenshots/` and record their provenance in its README. Use `GuideImage.astro` in MDX for responsive image generation, descriptive alt text, and captions.
 5. Run `npm run format` and `npm run verify`. Check the rendered guide at desktop and mobile widths.
 
-The guides and screenshots describe Boopity 1.0.1. Update content and screenshots together when behavior changes. The product tour uses screenshots; there is no public demo.
+The product tour screenshots describe Boopity 1.0.1; the Railway walkthrough was captured against the published 1.0.2 image. See screenshot provenance for validation boundaries. Update content and screenshots together when behavior changes. The product tour uses screenshots; there is no public demo.
 
 Keep visitor copy brief and concrete. Say what people can do, use the actual UI labels in guides, and put technical details on the relevant help page. Keep essential safety instructions without repeating them across marketing pages.
 
@@ -54,7 +54,7 @@ Keep visitor copy brief and concrete. Say what people can do, use the actual UI 
 
 The repository is configured for [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/#if-you-have-a-static-site). It publishes only `dist/`, with no server entry point, Astro server adapter, database, or application credentials. The output remains portable to other static hosts.
 
-**Cloudflare connection and publication are still pending.** The configuration does not claim any custom domains. `boopity.com` is the intended canonical origin, not evidence that the website is live there. See [the deployment guide](docs/deployment.md) for preview and publication steps.
+The website is live at [boopity.com](https://boopity.com). Cloudflare builds the connected repository’s `main` branch. Custom domains are managed in Cloudflare, not claimed by the repository configuration. See [the deployment guide](docs/deployment.md) for preview and publication settings.
 
 ## Dependency maintenance
 
