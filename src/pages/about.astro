@@ -4,59 +4,46 @@ import { site } from "../lib/site";
 ---
 
 <MarketingLayout
-  title="Open source, for independent sitters"
-  description="Boopity is an open-source project from Artwork Not Final LLC, made for independently run pet-care businesses."
+  title="About Boopity"
+  description="Free, open-source pet-sitting software by Artwork Not Final LLC."
 >
   <article class="wrap max-w-3xl py-16 sm:py-24">
     <p class="eyebrow mb-5 text-forest">About Boopity</p>
     <h1 class="display text-5xl sm:text-6xl">
-      Your business.
+      Open source.
       <br />
-      Your own website.
+      Yours to run.
     </h1>
     <p class="mt-8 text-xl leading-relaxed">
-      Boopity is open-source pet-sitting software from {site.owner}. It brings
-      the basics of running a pet-care business into one installation you
-      control.
+      Boopity is free, open-source software for independent pet sitters, made by{" "}
+      {site.owner}.
     </p>
-    <h2 class="mt-12 text-2xl font-semibold">
-      Not a marketplace. Not a subscription.
-    </h2>
     <p class="mt-4 leading-relaxed text-muted">
-      There’s no central Boopity account or Boopity software subscription. You
-      choose and pay for your own hosting, email delivery, and any payment
-      processing. Each installation serves one business.
-    </p>
-    <h2 class="mt-12 text-2xl font-semibold">Open to use and improve.</h2>
-    <p class="mt-4 leading-relaxed text-muted">
-      The application is MIT licensed. You can read the code, report a bug, or
-      contribute an improvement. The license does not grant trademark rights.
+      Use it, adapt it, or help improve it. The code is available under the MIT
+      license.
     </p>
     <a class="text-link mt-5 inline-block" href={site.appRepository}>
-      Explore the application on GitHub
+      View on GitHub
     </a>
     <h2 id="support" class="mt-12 text-2xl font-semibold">
-      A note on support
+      Need help?
     </h2>
     <p class="mt-4 leading-relaxed text-muted">
-      Boopity is community-supported. Help and maintenance are best-effort, with
-      no guaranteed response time. You or your installer are responsible for
-      hosting, updates, backups, and testing your email and payment connections.
+      Support is community-led, with no guaranteed response time.
     </p>
     <p class="mt-4 leading-relaxed text-muted">
-      For help, start with the{" "}
+      Start with the{" "}
       <a class="text-link" href="/docs/help/troubleshooting/">
         troubleshooting guide
       </a>
-      . Follow the application’s{" "}
+      . For security concerns, follow the{" "}
       <a
         class="text-link"
         href="https://github.com/artwork-not-final/boopity/blob/main/SECURITY.md"
       >
         security policy
       </a>{" "}
-      to report a vulnerability privately. Don’t put credentials or client
-      information in a public issue.
+      to report them privately.
     </p>
   </article>
 </MarketingLayout>

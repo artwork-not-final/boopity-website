@@ -18,7 +18,7 @@ test("local references preserve routes and decode fragment IDs", () => {
     localReference("https://boopity.com/docs/?q=book#start", "/"),
     { pathname: "/docs/", fragment: "start" },
   );
-  assert.equal(localReference("https://demo.boopity.com/", "/"), null);
+  assert.equal(localReference("https://care.example.test/", "/"), null);
   assert.equal(localReference("mailto:hello@example.test", "/"), null);
 });
 

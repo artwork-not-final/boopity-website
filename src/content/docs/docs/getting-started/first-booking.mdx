@@ -8,56 +8,50 @@ import services from "../../../../assets/screenshots/services.png";
 import clients from "../../../../assets/screenshots/clients.png";
 import bookings from "../../../../assets/screenshots/bookings.png";
 
-This walkthrough starts after setup is complete. We’ll use a dog walk for a fictional client, Alex, and their dog, Scout. Your prices and business details can be different.
-
-**Screens shown:** Boopity 1.0.1. No real client information is used.
+After setup, create a booking in five steps. This example uses a $25 dog walk for Alex and their dog, Scout.
 
 ## 1. Add a service
 
-Open **Services & rates** and select **New service**. Enter a name, duration, and price—for example, Dog walking, 30 minutes, and $25. Check the price preview, then save.
+In **Services & rates → New service**, enter Dog walking, 30 minutes, and $25. Check the price preview and save.
 
-New services aren’t offered in the client portal until you choose to make them available there. You can still use them for bookings you create yourself.
+New services are available to you but hidden from clients until you offer them in the portal.
 
 <GuideImage
   src={services}
   alt="The Services and rates page showing Dog walking, Drop-in visit, and Pet sitting with their prices."
-  caption="Services & rates keeps the price and client-portal availability together."
+  caption="Services & rates"
 />
 
 ## 2. Add your client and their pet
 
-Open **Clients & pets**, add your client’s name and email, and save. Open that client’s **Pets** tab and add their pet. Include any care instructions you’ll need on a visit.
-
-Adding a client is not the same as inviting them to sign in. You can keep records and make bookings before enabling portal access.
+In **Clients & pets**, add Alex’s name and email. Open their **Pets** tab to add Scout and any care notes. You can invite Alex to sign in later.
 
 <GuideImage
   src={clients}
   alt="Clients and pets with three fictional clients and their pets."
-  caption="Open a client to find their contact details, pets, and portal access."
+  caption="Clients & pets"
 />
 
 ## 3. Set your booking hours
 
-Open **Portal & rules**, choose your usual hours, and save. The booking form uses these hours to find available times, even when you create the booking yourself.
+In **Portal & rules**, save your usual hours. These determine available times for both you and your clients.
 
-For a one-off exception, the sitter form offers **Book outside opening hours** and **Waive minimum booking notice**. These don’t change your normal rules or allow double-booking. Clients cannot use these overrides.
+For exceptions, you can select **Book outside opening hours** or **Waive minimum booking notice** when booking. Clients cannot use these options, and overlapping bookings are still blocked.
 
 ## 4. Create the booking
 
-Return to **Bookings** and select **New booking**. Choose your client, pet, service, date, and time. Review the total and save the booking. Its status tells you whether it is requested, confirmed, or completed.
+Select **Bookings → New booking**. Choose Alex, Scout, Dog walking, a date, and a time. Review the total and save.
 
 <GuideImage
   src={bookings}
   alt="Weekly calendar with three confirmed bookings for the fictional business."
-  caption="Use Week, Month, or List to see your bookings. Open a booking for its details."
+  caption="Bookings · Week view"
 />
 
 ## 5. Record a payment
 
-Open the booking and its **Payments** tab. Record a manual payment with the amount and method, such as $25 in cash. This records money received; it does not charge the client.
+In the booking’s **Payments** tab, record $25 in cash. This logs money received; it does not charge the client.
 
-You can also review recorded payments from the main **Payments** page. Connecting online checkout is optional and uses your own Stripe account.
+The main **Payments** page lists payments across all bookings.
 
-## Ready to invite your client?
-
-Follow [Set up the client portal](/docs/guides/client-portal/) before sending an invitation. That guide covers service visibility, booking hours, and cancellation rules.
+**Next:** [Invite your client](/docs/guides/client-portal/).
