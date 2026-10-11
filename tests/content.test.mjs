@@ -28,7 +28,15 @@ test("Railway walkthrough links the public template and explains operator respon
     ),
     "utf8",
   );
-  assert.match(guide, /https:\/\/railway\.com\/new\/template\/boopity/);
+  assert.match(guide, /href="https:\/\/railway\.com\/new\/template\/boopity"/);
+  const referralLink =
+    "[Create your Railway account](https://railway.com?referralCode=oH-G_8)";
+  assert.ok(guide.includes(referralLink));
+  assert.ok(guide.indexOf(referralLink) < guide.indexOf("## Deploy Boopity"));
+  assert.match(
+    guide,
+    /sign up through the link below or deploy through this template/,
+  );
   assert.match(guide, /https:\/\/railway\.com\/pricing/);
   assert.match(guide, /referral credit or commission/i);
   assert.match(guide, /minimum, not a spending cap/i);
