@@ -19,7 +19,7 @@ Boopity creates its database automatically. You or your installer look after hos
 
 ## Have someone helping with hosting?
 
-Share the [technical installation guide](https://github.com/artwork-not-final/boopity/blob/v1.0.2/docs/guides/self-hosting.md). Ask your installer to connect your domain and HTTPS, then send you the private **Finish setup** link.
+Share the [Docker and Node installation guide](/docs/hosting/docker-and-node/). Ask your installer to connect your domain and HTTPS, then send you the private **Finish setup** link.
 
 ## Try it on your own computer
 
@@ -37,7 +37,7 @@ On macOS or Linux, start Docker with Compose installed. This runs Boopity locall
 
 Keep Docker running while using Boopity. Your records are saved in its data volume—don’t delete that volume when updating.
 
-For Windows, prebuilt images, or Node, see the [technical guide](https://github.com/artwork-not-final/boopity/blob/v1.0.2/docs/guides/self-hosting.md).
+For Windows with Docker, prebuilt images, or Node, follow [Install with Docker or Node](/docs/hosting/docker-and-node/).
 
 :::caution[Keep the setup link private]
 Anyone with the link can access setup. If it expires, rerun the start command or ask your installer for a replacement. Saved details stay intact.

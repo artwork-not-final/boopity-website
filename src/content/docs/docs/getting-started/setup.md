@@ -3,36 +3,48 @@ title: Set up your business
 description: Set up your account, email delivery, and business details.
 ---
 
-Open **Finish setup**, then work through these six steps.
+Have your business name and an inbox you can check handy. You’ll also need an email service to send sign-in codes; [connect email](/docs/guides/email/) explains how to get one ready. Google sign-in and online payments can wait.
 
-## 1. Your account
+Open your private **Finish setup** link and choose **Start setup**. You don’t need to create a password.
 
-Enter your name and sign-in email. You’ll need access to that inbox for verification.
+## Your account
 
-## 2. Email delivery
+Enter **Your name** and **Your email**, then select **Save and continue**. Use your own email address, not a client’s: whoever verifies this inbox becomes the owner of the installation.
 
-Connect SMTP or Resend so Boopity can send sign-in codes. Have your provider’s credentials and approved sender address ready. Follow the [email setup guide](https://github.com/artwork-not-final/boopity/blob/v1.0.2/docs/guides/email-setup.md) for help.
+## Email delivery
 
-## 3. Business
+Choose **Resend** or **SMTP**, enter the sender address and credentials from that service, and select **Save and continue**. Saving these settings doesn’t send an email yet.
 
-Add your business name, currency, and colors. Choose the time zone where you work; bookings use that time zone.
+[Follow the email connection guide](/docs/guides/email/) if you’re unsure what belongs in each field.
 
-## 4. Verify your inbox
+## Business
 
-Request a code and enter it to create your owner account. Wait for the countdown before requesting another.
+Add your business name, currency, colors, and optional logo. Choose the time zone where you work, even if your hosting company is in another country. Booking times use your business time zone.
 
-## 5. Google sign-in
+You can change these details later in **Settings → Appearance**.
 
-Optional. Connect Google or keep using email codes. Your Google email must match your Boopity account.
+## Verify your inbox
 
-## 6. Review and finish
+1. Select **Send sign-in code**.
+2. Open the message in the inbox you entered under **Your account**.
+3. Enter its six-digit code and select **Verify inbox & create owner**.
 
-Finish setup to open **Bookings**. The checklist helps you add your first service, client, and pet.
+Codes last five minutes. Use the newest message if you’ve requested more than one. Wait for the countdown before resending; [check email delivery](/docs/guides/email/#if-a-code-doesnt-arrive) if nothing arrives.
 
-## Come back later
+## Google sign-in
 
-Resume in the same browser. If your session expires, [recover setup access](/docs/help/troubleshooting/#i-cant-get-back-into-setup).
+Choose **Continue without Google** to use email codes. You can add Google later, or [connect it now](/docs/guides/google-sign-in/). When testing it, choose the Google account with the same email you just verified.
 
-Once setup is complete, make changes in **Settings**.
+## Review & finish
+
+Check your details and finish setup. **Bookings** opens with a checklist for your first service, client, pet, and booking.
+
+## Need to stop partway through?
+
+Return in the same browser to continue. Saved steps stay saved; information you haven’t submitted may not.
+
+If your session has expired, use the email-code option when available. Otherwise, [get a new setup link](/docs/help/troubleshooting/#i-cant-get-back-into-setup). Don’t delete the installation to start again.
+
+After setup, use **Settings** for changes—you won’t need to repeat the wizard.
 
 **Next:** [Make your first booking](/docs/getting-started/first-booking/).

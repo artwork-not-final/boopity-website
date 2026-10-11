@@ -50,6 +50,8 @@ The product tour screenshots describe Boopity 1.0.1; the Railway walkthrough was
 
 Keep visitor copy brief and concrete. Say what people can do, use the actual UI labels in guides, and put technical details on the relevant help page. Keep essential safety instructions without repeating them across marketing pages.
 
+The [content guide](docs/content-guide.md) records the editorial rules and source checks for the sitter manual. Routine tasks belong on this website, not behind links to Markdown files in the application repository.
+
 ## Publication
 
 The repository is configured for [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/#if-you-have-a-static-site). It publishes only `dist/`, with no server entry point, Astro server adapter, database, or application credentials. The output remains portable to other static hosts.

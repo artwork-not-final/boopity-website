@@ -49,3 +49,84 @@ test("Railway walkthrough links the public template and explains operator respon
     /boopity-production-2c3f|owner@example\.test|setup_token=/,
   );
 });
+
+test("sitter guides stay on the website instead of handing off to repository Markdown", async () => {
+  const root = fileURLToPath(
+    new URL("../src/content/docs/docs/", import.meta.url),
+  );
+  for (const file of await readdir(root, { recursive: true })) {
+    if (!/\.mdx?$/.test(file)) continue;
+    const source = await readFile(join(root, file), "utf8");
+    assert.doesNotMatch(
+      source,
+      /github\.com\/artwork-not-final\/boopity\/blob\/[^)\s]+\.md\b/,
+      file,
+    );
+    assert.doesNotMatch(source, /^##\s+\d+[.)]\s/gm, file);
+  }
+});
+
+test("task guides are discoverable from the docs home and sidebar", async () => {
+  const home = await readFile(
+    new URL("../src/content/docs/docs/index.mdx", import.meta.url),
+    "utf8",
+  );
+  const config = await readFile(
+    new URL("../astro.config.mjs", import.meta.url),
+    "utf8",
+  );
+  for (const route of [
+    "guides/services",
+    "guides/clients-and-pets",
+    "guides/bookings",
+    "guides/booking-rules",
+    "guides/client-portal",
+    "guides/payments",
+    "guides/business-and-account",
+    "guides/email",
+    "guides/google-sign-in",
+    "guides/stripe",
+    "hosting/docker-and-node",
+    "hosting/backup-and-restore",
+    "hosting/recover-access",
+  ]) {
+    assert.ok(home.includes(`/docs/${route}/`), `Missing home link: ${route}`);
+    assert.ok(
+      config.includes(`slug: "docs/${route}"`),
+      `Missing sidebar entry: ${route}`,
+    );
+  }
+});
+
+test("guides retain important distinctions about money, access, and storage", async () => {
+  const guide = async (path) =>
+    readFile(
+      new URL(`../src/content/docs/docs/${path}`, import.meta.url),
+      "utf8",
+    );
+  assert.match(
+    await guide("guides/services.mdx"),
+    /does \*\*not\*\* mean extra pets are free/,
+  );
+  const payments = await guide("guides/payments.mdx");
+  assert.match(
+    payments,
+    /always count as actual money received, even when Stripe is in sandbox mode/,
+  );
+  assert.match(
+    payments,
+    /Cancelling a booking does not waive its charge or refund its payments/,
+  );
+  assert.match(
+    await guide("guides/client-portal.md"),
+    /does not send invitations automatically/,
+  );
+  assert.match(
+    await guide("hosting/backup-and-restore.md"),
+    /Restoring data does not undo payments/,
+  );
+  assert.match(
+    await guide("hosting/docker-and-node.md"),
+    /no database connection string to enter/,
+  );
+});

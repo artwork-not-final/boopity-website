@@ -1,0 +1,62 @@
+---
+title: Booking hours & rules
+description: Choose your working hours, booking notice, approval process, and cancellation deadline.
+---
+
+import GuideImage from "../../../../components/GuideImage.astro";
+import rules from "../../../../assets/screenshots/booking-rules.png";
+
+Set these in **Portal & rules** before taking bookings. New installations have no opening hours, so the time picker will be empty until you save some.
+
+## Set your weekly hours
+
+Select the days you work and enter **Opens** and **Closes** for each. For example, Monday from 9:00 AM to 5:00 PM allows a 30-minute visit to start as late as 4:30 PM.
+
+Times use the business time zone shown on the page. Change that in **Settings → Appearance** if it’s wrong.
+
+For holidays or days off, enter dates under **Unavailable dates**, one per line in `YYYY-MM-DD` format. These block the whole day. Select **Save changes**.
+
+<GuideImage
+  src={rules}
+  alt="Portal and rules with client access, approval, notice periods, and weekly availability."
+  caption="Save hours and notice periods before offering online booking."
+/>
+
+## Choose how far ahead clients can book
+
+| Setting                        | Example | What it means                                             |
+| ------------------------------ | ------- | --------------------------------------------------------- |
+| Minimum booking notice (hours) | 24      | A client must book at least a day ahead                   |
+| Book ahead up to (days)        | 90      | Dates more than 90 days away aren’t offered               |
+| Cancellation notice (hours)    | 24      | Clients can cancel until 24 hours before the visit starts |
+
+Set the minimum notice to `0` if you want to allow same-day bookings when a slot is free.
+
+The cancellation rule is saved with each booking. Changing it later doesn’t rewrite the terms of existing bookings.
+
+## Approve requests or confirm automatically
+
+- **Review each request:** you approve or decline each client request. Set **Time to approve a request (hours)** to choose how long its slot is held. The hold also ends if the visit’s start time arrives first.
+- **Confirm automatically:** an available booking is confirmed as soon as the client submits it.
+
+Bookings you enter as the sitter are confirmed immediately in either mode. Neither mode collects payment automatically.
+
+## Open the client portal
+
+Select **Allow invited clients to sign in**, then save. Only invited clients can join; this doesn’t make booking open to anyone who finds your site.
+
+You also need to [offer at least one service in the portal](/docs/guides/services/#let-clients-book-the-service) and [invite your clients](/docs/guides/client-portal/).
+
+## Why a time isn’t available
+
+Check these in order:
+
+1. The selected weekday has saved opening hours.
+2. The whole visit fits inside those hours.
+3. The date meets the minimum notice and advance-booking window.
+4. It isn’t listed as unavailable.
+5. No confirmed booking or unexpired request already holds the slot.
+
+All-day and multi-day bookings need every date in the range to be available, including the last day. They reserve those days, and a booking can span at most 31 days.
+
+For a one-off exception to hours or notice, the sitter can use the options on **New booking**. [See what exceptions allow](/docs/guides/bookings/#make-an-exception).
