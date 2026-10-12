@@ -2,6 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
+test("robots.txt advertises the production sitemap without changing crawler rules", async () => {
+  const robots = await readFile(
+    new URL("../public/robots.txt", import.meta.url),
+    "utf8",
+  );
+  assert.equal(robots.trim(), "Sitemap: https://boopity.com/sitemap-index.xml");
+});
+
 test("Cloudflare publishes only static output without claiming a domain", async () => {
   const config = JSON.parse(
     await readFile(new URL("../wrangler.json", import.meta.url), "utf8"),
