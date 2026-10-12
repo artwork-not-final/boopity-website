@@ -47,9 +47,11 @@ On a local Docker installation, rerun the start script from the original folder.
 
 ## A payment is still processing
 
-Open the booking’s **Payments** tab and select **Refresh payments** or **Reconcile with provider**. Check the result in Stripe too. Bank payments can take time to settle; returning to Boopity from checkout doesn’t prove payment succeeded.
+Open the booking’s **Payments** tab and select **Refresh payments** or **Check payment status**. Check the result in Stripe too. Bank payments can take time to settle; returning to Boopity from checkout doesn’t prove payment succeeded.
 
 Don’t add a manual payment or start another charge to make the pending status disappear. [Payment help](/docs/guides/payments/) explains uncertain outcomes and refunds.
+
+Still connecting Stripe? Follow the [setup walkthrough](/docs/guides/stripe/), including the webhook check before enabling checkout.
 
 ## The page says “Failed to fetch”
 

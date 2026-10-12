@@ -152,6 +152,65 @@ test("provider walkthroughs cover setup and verification without requiring repos
   assert.doesNotMatch(google, /https:\/\/demo\.boopity\.com/);
 });
 
+test("Stripe walkthrough covers a no-charge connection check before checkout and separates live payments", async () => {
+  const stripe = await readFile(
+    new URL("../src/content/docs/docs/guides/stripe.md", import.meta.url),
+    "utf8",
+  );
+  for (const phrase of [
+    "Create sandbox",
+    "Create restricted key",
+    "View request logs",
+    "**Snapshot**, not Thin",
+    "Connection instructions",
+    "Stripe test restricted API key",
+    "Stripe test webhook signing secret",
+    "Verify account (read-only)",
+    "product.created",
+    "Archive product",
+    "don’t make a payment link, invoice, subscription, or payment",
+    "Signed webhook: Received",
+    "Open sandbox checkout",
+    "4242 4242 4242 4242",
+    "**Received**",
+    "Sandbox balance due",
+    "I confirm this sandbox refund",
+    "Stripe live restricted API key",
+    "Stripe live webhook signing secret",
+    "A sandbox test event cannot verify the live connection",
+    "I understand live mode lets clients make real payments",
+    "Use live mode",
+    "real client and booking records",
+    "Don’t use a real card just to run another test",
+    "doesn’t add tax to Boopity bookings",
+    "doesn’t currently support Stripe custom checkout domains",
+  ]) {
+    assert.ok(stripe.includes(phrase), `Stripe guide missing: ${phrase}`);
+  }
+  const events = stripe
+    .match(/```text\n(checkout\.session\.completed[\s\S]*?)\n```/)?.[1]
+    .split("\n");
+  assert.deepEqual(events, [
+    "checkout.session.completed",
+    "checkout.session.async_payment_succeeded",
+    "checkout.session.async_payment_failed",
+    "checkout.session.expired",
+    "refund.created",
+    "refund.updated",
+    "refund.failed",
+    "charge.refunded",
+    "charge.dispute.created",
+    "charge.dispute.updated",
+    "charge.dispute.closed",
+  ]);
+  assert.ok(
+    stripe.indexOf("## Check the webhook without taking a payment") <
+      stripe.indexOf("## Enable practice checkout"),
+  );
+  assert.match(stripe, /not a tested permission preset/);
+  assert.doesNotMatch(stripe, /(?:rk|sk)_(?:test|live)_[A-Za-z0-9]{10,}/);
+});
+
 test("guides retain important distinctions about money, access, and storage", async () => {
   const guide = async (path) =>
     readFile(
