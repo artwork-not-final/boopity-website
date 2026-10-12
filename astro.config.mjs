@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwindcss from "@tailwindcss/vite";
+import { sharingMetadata } from "./src/lib/sharing.mjs";
 
 export default defineConfig({
   site: "https://boopity.com",
@@ -11,6 +12,7 @@ export default defineConfig({
       title: "Boopity",
       description: "Practical guides for your pet-care business.",
       favicon: "/favicon.svg",
+      head: sharingMetadata("guides").map((attrs) => ({ tag: "meta", attrs })),
       customCss: ["./src/styles/docs.css"],
       social: [
         {

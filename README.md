@@ -32,6 +32,8 @@ npm run preview
 | `src/layouts/`            | Marketing document shell and metadata                           |
 | `src/styles/`             | Shared theme tokens and separate marketing/documentation styles |
 | `src/assets/screenshots/` | Reviewed, fictional-data product screenshots                    |
+| `src/assets/sharing/`     | Editable branded sharing cards and image provenance             |
+| `public/social/`          | PNG sharing images for marketing pages and documentation        |
 | `src/lib/site.ts`         | Shared site metadata and links                                  |
 | `astro.config.mjs`        | Canonical origin, guide navigation, integrations                |
 | `wrangler.json`           | Cloudflare static-asset routing and deployment name             |
