@@ -5,45 +5,105 @@ import { site } from "../lib/site";
 
 <MarketingLayout
   title="About Boopity"
-  description="Free, open-source pet-sitting software by Artwork Not Final LLC."
+  description="Why Boopity is open source, who makes it, and what it means to run it for your pet-care business."
 >
-  <article class="wrap max-w-3xl py-16 sm:py-24">
-    <p class="eyebrow mb-5 text-forest">About Boopity</p>
-    <h1 class="display text-5xl sm:text-6xl">
-      Open source.
-      <br />
-      Yours to run.
-    </h1>
-    <p class="mt-8 text-xl leading-relaxed">
-      Boopity is free, open-source software for independent pet sitters, made by{" "}
-      {site.owner}.
-    </p>
-    <p class="mt-4 leading-relaxed text-muted">
-      Use it, adapt it, or help improve it. The code is available under the MIT
-      license.
-    </p>
-    <a class="text-link mt-5 inline-block" href={site.appRepository}>
-      View on GitHub
-    </a>
-    <h2 id="support" class="mt-12 text-2xl font-semibold">
-      Need help?
-    </h2>
-    <p class="mt-4 leading-relaxed text-muted">
-      Support is community-led, with no guaranteed response time.
-    </p>
-    <p class="mt-4 leading-relaxed text-muted">
-      Start with the{" "}
-      <a class="text-link" href="/docs/help/troubleshooting/">
-        troubleshooting guide
-      </a>
-      . For security concerns, follow the{" "}
-      <a
-        class="text-link"
-        href="https://github.com/artwork-not-final/boopity/blob/main/SECURITY.md"
+  <article class="wrap py-14 sm:py-20">
+    <header class="max-w-3xl">
+      <p class="eyebrow mb-5 text-forest">About Boopity</p>
+      <h1 class="display text-balance text-5xl sm:text-6xl">
+        Built for independent pet sitters.
+      </h1>
+      <p class="mt-7 max-w-2xl text-xl leading-relaxed text-muted">
+        Boopity brings bookings, pet-care details, and payments together on your
+        own website. It’s an open-source project by {site.owner}.
+      </p>
+    </header>
+
+    <section
+      class="mt-12 grid items-start gap-10 border-t border-line pt-10 lg:grid-cols-[1.15fr_.85fr] lg:gap-16"
+      aria-labelledby="why-open-source"
+    >
+      <div>
+        <h2 id="why-open-source" class="display text-3xl sm:text-4xl">
+          Why we opened the code.
+        </h2>
+        <p class="mt-5 leading-relaxed">
+          Boopity began as a subscription app. We chose to make it open source
+          so sitters could install it for their own businesses, on a host they
+          choose.
+        </p>
+        <p class="mt-4 leading-relaxed text-muted">
+          You use your business name, logo, and colors. You decide which
+          services clients can book and when. The source code is available under
+          the MIT license, so you can use it, change it, and share your
+          improvements.
+        </p>
+        <a class="text-link mt-5 inline-block" href={site.appRepository}>
+          Explore the code on GitHub
+        </a>
+      </div>
+      <aside
+        class="rounded-2xl bg-sand p-7 sm:p-8"
+        aria-labelledby="your-installation"
       >
-        security policy
-      </a>{" "}
-      to report them privately.
-    </p>
+        <h3 id="your-installation" class="text-xl font-semibold">
+          Free software. Your own installation.
+        </h3>
+        <p class="mt-4 leading-relaxed">
+          Boopity doesn’t charge a software subscription or take a cut of
+          bookings. Hosting, email, and payment-processing fees are separate.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          You or your installer handles hosting, updates, and backups. The
+          guides walk you through getting started.
+        </p>
+        <a
+          class="text-link mt-5 inline-block"
+          href="/docs/getting-started/installation/"
+        >
+          See what’s involved
+        </a>
+      </aside>
+    </section>
+
+    <div class="mt-12 grid gap-10 border-t border-line pt-10 md:grid-cols-2 md:gap-16">
+      <section aria-labelledby="contribute">
+        <h2 id="contribute" class="display text-3xl">
+          Help shape Boopity.
+        </h2>
+        <p class="mt-5 leading-relaxed text-muted">
+          Found a confusing step or something that doesn’t work? Tell us on
+          GitHub. Bug reports, clearer instructions, and code contributions all
+          help—you don’t have to be a developer to contribute.
+        </p>
+        <a
+          class="text-link mt-5 inline-block"
+          href={`${site.appRepository}/issues`}
+        >
+          Share feedback or report a bug
+        </a>
+      </section>
+      <section aria-labelledby="support">
+        <h2 id="support" class="display text-3xl">
+          Need a hand?
+        </h2>
+        <p class="mt-5 leading-relaxed text-muted">
+          Start with the{" "}
+          <a class="text-link" href="/docs/help/troubleshooting/">
+            troubleshooting guide
+          </a>
+          , or ask a question on GitHub. Help is community-led, with no
+          guaranteed response time.
+        </p>
+        <p class="mt-4 leading-relaxed text-muted">
+          Keep client details and credentials out of public posts. Report
+          security concerns privately using the{" "}
+          <a class="text-link" href={`${site.appRepository}/security/policy`}>
+            security policy
+          </a>
+          .
+        </p>
+      </section>
+    </div>
   </article>
 </MarketingLayout>
