@@ -84,6 +84,7 @@ test("task guides are discoverable from the docs home and sidebar", async () => 
     "guides/payments",
     "guides/business-and-account",
     "guides/email",
+    "guides/resend",
     "guides/google-sign-in",
     "guides/stripe",
     "hosting/docker-and-node",
@@ -96,6 +97,59 @@ test("task guides are discoverable from the docs home and sidebar", async () => 
       `Missing sidebar entry: ${route}`,
     );
   }
+});
+
+test("provider walkthroughs cover setup and verification without requiring repository instructions", async () => {
+  const guide = async (path) =>
+    readFile(
+      new URL(`../src/content/docs/docs/${path}`, import.meta.url),
+      "utf8",
+    );
+  const resend = await guide("guides/resend.mdx");
+  for (const phrase of [
+    "Sending access",
+    "DNS only",
+    "Keep your existing inbox working",
+    "Verify inbox & create owner",
+    "Verify email delivery",
+    "same Resend team",
+    "recipient’s mail server accepted it, not that it reached the inbox",
+  ]) {
+    assert.ok(resend.includes(phrase), `Resend guide missing: ${phrase}`);
+  }
+  assert.match(resend, /<GuideImage\b/);
+  assert.match(await guide("guides/email.md"), /\/docs\/guides\/resend\//);
+  assert.match(
+    await guide("getting-started/setup.md"),
+    /\/docs\/guides\/resend\//,
+  );
+
+  const google = await guide("guides/google-sign-in.md");
+  for (const phrase of [
+    "Create project",
+    "Google Auth Platform",
+    "External",
+    "Web application",
+    "Authorized JavaScript origins",
+    "Authorized redirect URIs",
+    "/api/auth/callback/google",
+    "Google client ID",
+    "Google client secret",
+    "owner email",
+    "Publish app",
+    "Verification Center",
+    "privacy-policy link",
+    "seven-day authorization expiry doesn’t apply",
+  ]) {
+    assert.ok(google.includes(phrase), `Google guide missing: ${phrase}`);
+  }
+  assert.match(google, /https:\/\/www\.googleapis\.com\/auth\/userinfo\.email/);
+  assert.match(
+    google,
+    /https:\/\/www\.googleapis\.com\/auth\/userinfo\.profile/,
+  );
+  assert.match(google, /Boopity doesn’t create those policy pages for you/);
+  assert.doesNotMatch(google, /https:\/\/demo\.boopity\.com/);
 });
 
 test("guides retain important distinctions about money, access, and storage", async () => {

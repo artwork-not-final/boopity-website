@@ -15,7 +15,7 @@ Enter **Your name** and **Your email**, then select **Save and continue**. Use y
 
 Choose **Resend** or **SMTP**, enter the sender address and credentials from that service, and select **Save and continue**. Saving these settings doesn’t send an email yet.
 
-[Follow the email connection guide](/docs/guides/email/) if you’re unsure what belongs in each field.
+Using Resend? [Follow the full Resend walkthrough](/docs/guides/resend/) to get your domain and key ready. For another provider, use the [SMTP field guide](/docs/guides/email/#connect-smtp).
 
 ## Business
 

@@ -14,14 +14,9 @@ Choose one of the options below. You don’t need both.
 
 ## Connect Resend
 
-You’ll need a domain you own, such as `example.com`.
+You’ll need a domain you own and access to its DNS settings. The [Resend walkthrough](/docs/guides/resend/) covers creating your account, adding the DNS records, making a sending key, and receiving your first code.
 
-1. In Resend, open **Domains** and add your domain. Resend gives you DNS records to add where you manage the domain. Keep existing records for your usual inbox; don’t replace them with these. Wait until Resend shows the domain as verified. [Resend’s domain instructions](https://resend.com/docs/dashboard/domains/introduction) explain the records.
-2. Open **API Keys** and create a key with **Sending access**, restricted to that domain. Copy the key when it appears; Resend won’t show it again. [Resend’s key instructions](https://resend.com/docs/dashboard/api-keys/introduction).
-3. In Boopity, choose **Resend**. Enter a **Sender email** on the verified domain, such as `hello@example.com`, and paste the key into **Resend API key**.
-4. Select **Save and continue** in setup, or **Save changes** in Settings.
-
-Keep the key private. It belongs in your own Boopity settings, not in a support message or screenshot.
+Already have a verified domain and key? Go straight to [entering the connection in Boopity](/docs/guides/resend/#enter-the-connection-in-boopity).
 
 ## Connect SMTP
 

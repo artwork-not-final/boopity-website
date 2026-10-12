@@ -50,6 +50,7 @@ export default defineConfig({
           items: [
             { slug: "docs/guides/business-and-account" },
             { slug: "docs/guides/email" },
+            { slug: "docs/guides/resend" },
             { slug: "docs/guides/google-sign-in" },
             { slug: "docs/guides/stripe" },
           ],

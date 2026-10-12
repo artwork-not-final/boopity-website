@@ -1,0 +1,177 @@
+---
+title: Set up Resend
+description: Connect Resend to Boopity, from adding your domain and DNS records to receiving your first sign-in code.
+---
+
+import GuideImage from "../../../../components/GuideImage.astro";
+import emailScreen from "../../../../assets/screenshots/railway/email.jpg";
+
+This guide takes you from a new Resend account to receiving a sign-in code from your own business. Keep Boopity open in one tab and Resend in another.
+
+## Have these ready
+
+- A domain you own, such as `example.com`, and access to its DNS settings. DNS settings are the records that tell other services where your website and email live.
+- An inbox you can check. This can be the Gmail address you entered in Boopity’s **Your account** step.
+- Your Boopity **Email delivery** page, either in setup or under **Settings**.
+
+Your domain and your Boopity website don’t have to be hosted by the same company. For example, a Railway-hosted installation can send through a domain you already own.
+
+Don’t have a domain? You’ll need one for normal sending through Resend. You can also use [SMTP from an email provider you already have](/docs/guides/email/#connect-smtp), if it permits automated messages.
+
+## Create your Resend account
+
+1. Open [Resend](https://resend.com/) and choose **Get started**. If you already have an account, sign in instead.
+2. Complete the account registration and any email-verification prompt.
+3. Open the Resend dashboard. If you belong to several teams, choose the one for your business and use it throughout this guide.
+
+You don’t need to write code or install anything from Resend’s developer quickstart. Boopity already handles sending. Resend has [production access on free accounts](https://resend.com/docs/knowledge-base/does-resend-require-production-approval), but sending allowances still depend on your [plan](https://resend.com/pricing).
+
+## Add your sending domain
+
+We’ll use `mail.example.com` in this guide. Replace `example.com` with your own domain. The `mail` part is a subdomain—you don’t buy it separately.
+
+1. In Resend, open **Domains**, then **Add Domain**.
+2. Enter `mail.your-domain.com`, using your actual domain. Don’t include `https://`, a slash, or an email address.
+3. Choose a region near most of your clients. Leave the optional return-path setting at its default.
+4. Add the domain and keep its DNS records page open.
+
+Using a separate sending subdomain is [Resend’s recommended approach](https://resend.com/docs/add-a-domain). If you already have a verified domain in Resend, you can use that instead; you don’t need to add another just for Boopity.
+
+Here’s how the addresses fit together:
+
+| What it’s for                   | Example                     |
+| ------------------------------- | --------------------------- |
+| Domain you own                  | `example.com`               |
+| Domain added to Resend          | `mail.example.com`          |
+| Sender email entered in Boopity | `bookings@mail.example.com` |
+| Inbox you use to sign in        | Your usual email address    |
+
+The sender must match the domain you verify. With the example above, use `bookings@mail.example.com`, not `bookings@example.com`.
+
+## Add the DNS records
+
+Open the company that manages your domain’s DNS in another tab. This may be where you bought the domain, but not always. If you moved its nameservers to Cloudflare, for example, you’ll edit the records in Cloudflare.
+
+Find your domain, then look for **DNS** or **Manage DNS**. Leave the existing records in place.
+
+### Copy each record from Resend
+
+Add one record at a time using the values on your Resend domain page:
+
+| Resend shows       | Put it here in your DNS dashboard                |
+| ------------------ | ------------------------------------------------ |
+| Type               | The record type, such as TXT, MX, or CNAME       |
+| Name               | The Name or Host field                           |
+| Content or Value   | The Content, Value, Target, or Mail server field |
+| Priority, if shown | The Priority field for an MX record              |
+| TTL                | Leave Auto or your provider’s default            |
+
+Use **your own generated records**, not values from someone else’s screenshot. Resend may show CNAME records or a combination of TXT and MX records; both are possible. Its [domain records guide](https://resend.com/docs/dashboard/domains/manage-domains) explains the difference.
+
+Some DNS dashboards add your domain to the name automatically. If Resend shows `resend._domainkey.mail.example.com` and the dashboard already appends `.example.com`, enter only `resend._domainkey.mail`. Check the saved result: it shouldn’t end in `example.com.example.com`.
+
+### If you use Cloudflare
+
+1. Select your domain in Cloudflare, then open **DNS → Records**.
+2. Choose **Add record** and select the type shown in Resend.
+3. Copy the name and content into the matching fields. For an MX record, also copy its priority.
+4. If a CNAME record has a cloud icon, set it to **DNS only**—the gray cloud, not the orange proxy.
+5. Save, then repeat for the remaining sending records.
+
+Resend may also offer a Cloudflare sign-in option that adds the records for you. You can use that instead after reviewing the access it requests. [Resend’s Cloudflare instructions](https://resend.com/docs/guides/dns/cloudflare) cover both routes.
+
+:::caution[Keep your existing inbox working]
+Boopity needs to **send** email, not receive it through Resend. Leave Resend’s receiving option off. Don’t replace the existing MX records that deliver mail to your usual inbox. Add only the sending records Resend shows for this subdomain. [Why the record name matters](https://resend.com/docs/knowledge-base/how-do-i-avoid-conflicting-with-my-mx-records).
+:::
+
+### Wait for verification
+
+Return to Resend and select **Verify DNS Records**. Continue when sending is verified.
+
+Verification often finishes within 15 minutes, but DNS changes can take up to 72 hours. While it’s pending, don’t keep deleting and recreating the domain. If it still hasn’t verified, [check the records below](#the-domain-stays-pending). [Resend’s verification timing](https://resend.com/docs/add-a-domain).
+
+## Create a key for Boopity
+
+The API key lets Boopity send through your Resend account. It isn’t your Resend password.
+
+1. In Resend, open **API Keys**.
+2. Select **Create API Key**.
+3. Name it `Boopity` so you can recognize it later.
+4. Choose **Sending access**, not full access.
+5. Restrict it to the domain you just verified, such as `mail.example.com`.
+6. Create the key and copy it. Save a copy in your password manager before closing the window; Resend only reveals the full key once.
+
+If you’ve already closed that window, create a replacement key. Don’t copy the partially hidden value from the key list. [Resend’s API-key instructions](https://resend.com/docs/create-an-api-key).
+
+## Enter the connection in Boopity
+
+Return to **Email delivery** in Boopity:
+
+1. Set **Email provider** to **Resend**.
+2. Enter your **Sender email**, such as `bookings@mail.example.com`. Enter only the address, without a business name or angle brackets.
+3. Paste the complete key into **Resend API key**. Don’t add quotes around it.
+4. Select **Save and continue** in setup, or **Save changes** in Settings.
+
+<GuideImage
+  src={emailScreen}
+  alt="Boopity Email delivery page with Resend selected and fields for Sender email and Resend API key."
+  caption="These are the only Resend details you need to enter in Boopity."
+/>
+
+Keep the key out of screenshots, emails, and support requests. If you return to this page later, an empty key field can mean the existing key is saved. Check the saved-credentials indicator; leave the field blank to keep it.
+
+Setting a sender address doesn’t create an inbox for replies. If you want to receive mail at that address, arrange the mailbox or forwarding with your email provider separately.
+
+## Receive your first code
+
+Saving the settings doesn’t send a message. Test delivery before signing out.
+
+**If you’re in the setup wizard:**
+
+1. Finish the **Business** step, then open **Verify your inbox**.
+2. Select **Send sign-in code**. It goes to the address you entered under **Your account**, not necessarily your sender address.
+3. Check that inbox, including spam or junk.
+4. Enter the six-digit code in Boopity and select **Verify inbox & create owner**.
+
+**If you’ve already finished setup:**
+
+1. In **Settings → Email delivery**, open **Test email delivery**.
+2. Request a code, check your inbox, and enter it.
+3. Select **Verify email delivery** and check for confirmation.
+
+Codes last five minutes. If you request another, use the newest message. Once your code is accepted, you can continue setup or return to your workspace.
+
+## If something doesn’t work
+
+### The domain stays pending
+
+Check these before trying again:
+
+- Are the records in the DNS service your domain actually uses?
+- Does each saved name match Resend’s name, without the domain repeated twice?
+- Did you copy the entire value, including the long TXT value?
+- Are CNAME records set to DNS only, if your provider offers proxying?
+
+Resend’s [domain verification help](https://resend.com/docs/knowledge-base/what-if-my-domain-is-not-verifying) has examples for DNS providers that shorten record names. If you need help, share the failing record name and status—not your API key.
+
+### Resend says the sender domain isn’t verified
+
+Compare the part after `@` in Boopity’s **Sender email** with the verified domain in Resend. Also check that your key belongs to the same Resend team and permits that domain. A key restricted to a different domain won’t work.
+
+Don’t use `onboarding@resend.dev` for your clients. Resend’s [test sender](https://resend.com/docs/knowledge-base/403-error-resend-dev-domain) is restricted to sending to your own Resend account email. Use your verified domain for Boopity.
+
+### Boopity sends the code, but nothing arrives
+
+Open **Emails** in Resend and find the message by recipient and time. Check the address and delivery status. A bounce or rejection needs attention; sending the same message repeatedly won’t fix it.
+
+**Delivered** means the recipient’s mail server accepted it, not that it reached the inbox. Check spam, filters, and any workplace quarantine. [What Resend’s delivery status means](https://resend.com/docs/knowledge-base/what-if-an-email-says-delivered-but-the-recipient-has-not-received-it).
+
+If there’s no message, check Boopity’s error and your Resend key. If Resend reports a sending limit, check the allowance and reset time in your account.
+
+### Boopity says there have been too many code requests
+
+That’s Boopity’s sign-in protection, not a reason to replace your Resend key. Wait for the retry time shown, then request one code. Keep the page open and use the latest email.
+
+### The email fields can’t be changed
+
+If Boopity says email is managed by your host, those settings came from the hosting configuration. Ask whoever manages the installation to update them there. Otherwise, the fields above are all you need—no terminal commands or code changes.

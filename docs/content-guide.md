@@ -31,6 +31,13 @@ The sitter guides were checked against the application's `main` source after the
 
 Provider instructions were checked against Resend's domain/key docs, Google's web OAuth docs, Stripe's keys/event destinations/testing docs, Railway's volume-backup docs, and Docker's volume-backup docs. Links live beside the corresponding instructions. Recheck live provider dashboards when publishing changes to their steps.
 
+The expanded Resend and Google walkthroughs were checked on October 12, 2026 against official provider documentation and Boopity 1.0.2 source. They do not claim a fresh account-creation or delivery test. Keep these details when updating them:
+
+- Resend can generate CNAME records or TXT/MX sending records. Tell readers to use their own generated values; don't hard-code a fixed set or replace existing inbox MX records. The reused email screenshot contains blank credential fields.
+- Google’s basic `openid`, email, and profile permissions are exempt from the normal test-user and seven-day authorization restrictions. Boopity's Better Auth Google provider requests only those defaults. Don't imply that all sitters must add every client as a Google test user.
+- Google's external-production branding requirements are separate from a working sign-in test. Link real business policy pages, distinguish publishing from verification, and don't promise that Boopity supplies those pages.
+- Resend keys and new Google client secrets are only fully shown when created. Test replacements before retiring an existing working credential. No account settings or credentials were changed for this documentation work.
+
 The Stripe permission table is intentionally described as operations the app uses, not a fully certified dashboard preset. Don't upgrade that claim without a controlled restricted-key checkout/refund test. Likewise, don't copy obsolete preview/no-release disclaimers from older application runbooks into current user guides.
 
 ## Verification
