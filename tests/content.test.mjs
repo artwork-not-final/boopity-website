@@ -4,6 +4,22 @@ import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+test("About explains the project without promising managed hosting or paid support", async () => {
+  const source = await readFile(
+    new URL("../src/pages/about.astro", import.meta.url),
+    "utf8",
+  );
+  assert.match(source, /\{site\.owner\}/);
+  assert.match(source, /MIT license/);
+  assert.match(source, /fees are separate/);
+  assert.match(source, /hosting, updates, and backups/);
+  assert.match(source, /no\s+guaranteed response time/);
+  assert.match(source, /id="support"/);
+  assert.match(source, /\/security\/policy/);
+  assert.match(source, /\/issues/);
+  assert.match(source, /\/docs\/getting-started\/installation\//);
+});
+
 test("visitor pages offer a screenshot tour, not a public demo", async () => {
   for (const folder of ["../src/pages/", "../src/content/docs/"]) {
     const root = fileURLToPath(new URL(folder, import.meta.url));
