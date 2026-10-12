@@ -21,6 +21,7 @@ export function inspectHtml(html) {
     ids: new Set(),
     headings: 0,
     titles: 0,
+    meta: [],
   };
   function visit(node) {
     const attrs = Object.fromEntries(
@@ -32,13 +33,61 @@ export function inspectHtml(html) {
     if (node.tagName === "title") result.titles++;
     if (node.tagName === "a" && attrs.href) result.links.push(attrs.href);
     if (node.tagName === "img") result.images.push(attrs);
+    if (node.tagName === "meta") result.meta.push(attrs);
     for (const child of node.childNodes ?? []) visit(child);
   }
   visit(parse(html));
   return result;
 }
 
-export async function checkSite(directory) {
+export function inspectSharing(page) {
+  const errors = [];
+  const values = {};
+  for (const key of [
+    "og:title",
+    "og:description",
+    "og:url",
+    "og:site_name",
+    "og:image",
+    "og:image:type",
+    "og:image:width",
+    "og:image:height",
+    "og:image:alt",
+    "twitter:card",
+    "twitter:image",
+    "twitter:image:alt",
+  ]) {
+    const matches = page.meta.filter(
+      (meta) => (meta.property ?? meta.name) === key,
+    );
+    if (matches.length !== 1 || !matches[0].content?.trim()) {
+      errors.push(`expected one nonempty ${key}`);
+    }
+    values[key] = matches[0]?.content;
+  }
+  for (const key of ["og:url", "og:image", "twitter:image"]) {
+    try {
+      if (new URL(values[key]).origin !== origin)
+        throw new Error("Wrong origin");
+    } catch {
+      errors.push(`${key} must be an absolute production HTTPS URL`);
+    }
+  }
+  if (values["og:image"] !== values["twitter:image"])
+    errors.push("sharing images must match");
+  if (values["og:image:type"] !== "image/png")
+    errors.push("sharing image must be PNG");
+  if (
+    values["og:image:width"] !== "1200" ||
+    values["og:image:height"] !== "630"
+  )
+    errors.push("sharing image dimensions must be 1200 × 630");
+  if (values["twitter:card"] !== "summary_large_image")
+    errors.push("expected a large-image sharing card");
+  return errors;
+}
+
+export async function checkSite(directory, { sharing = false } = {}) {
   const root = resolve(directory);
   const errors = [];
   const pages = new Map();
@@ -73,6 +122,33 @@ export async function checkSite(directory) {
     if (page.headings !== 1)
       errors.push(`${route}: expected one h1, got ${page.headings}`);
     if (page.titles !== 1) errors.push(`${route}: expected one page title`);
+    if (sharing) {
+      errors.push(...inspectSharing(page).map((error) => `${route}: ${error}`));
+      const value = page.meta.find(
+        (meta) => meta.property === "og:image",
+      )?.content;
+      if (value) {
+        let ref;
+        try {
+          ref = localReference(value, route);
+        } catch {
+          // inspectSharing already reports the invalid URL.
+        }
+        const imageFile = ref && (await targetFile(ref.pathname));
+        if (!imageFile) errors.push(`${route}: missing sharing image ${value}`);
+        else {
+          const png = await readFile(imageFile);
+          if (
+            png.length < 24 ||
+            png.subarray(0, 8).toString("hex") !== "89504e470d0a1a0a" ||
+            png.readUInt32BE(16) !== 1200 ||
+            png.readUInt32BE(20) !== 630
+          ) {
+            errors.push(`${route}: sharing image is not a 1200 × 630 PNG`);
+          }
+        }
+      }
+    }
     for (const value of page.links) {
       try {
         const ref = localReference(value, route);
@@ -110,12 +186,12 @@ if (
   process.argv[1] &&
   resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
-  const result = await checkSite("dist");
+  const result = await checkSite("dist", { sharing: true });
   if (result.errors.length) {
     console.error(result.errors.join("\n"));
     process.exitCode = 1;
   } else
     console.log(
-      `Checked ${result.pages} pages: local links, anchors, headings, and images pass.`,
+      `Checked ${result.pages} pages: local links, anchors, headings, images, and sharing previews pass.`,
     );
 }

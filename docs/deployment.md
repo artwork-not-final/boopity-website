@@ -46,6 +46,22 @@ Only after preview approval, inspect existing DNS records and Worker routes for 
 
 Attach `boopity.com` as the Worker's custom domain. Configure `www.boopity.com` to redirect to `https://boopity.com`, preserving the path and query string. Confirm certificates are active and test both names before announcing publication.
 
+### Current www redirect
+
+Cloudflare manages this separately from the static website deployment:
+
+- Proxied `A` record: `www` → `192.0.2.1`, Cloudflare's placeholder for an originless redirect. This is not an application server.
+- Single Redirect named **Boopity website — www to canonical**.
+- Match: `(http.host eq "www.boopity.com")`.
+- Dynamic target: `concat("https://boopity.com", http.request.uri.path)`.
+- Status: **301**. **Preserve query string** enabled.
+
+The exact hostname match covers HTTP and HTTPS without changing the existing apex HTTPS rule or other subdomains. Keep the DNS record proxied. Verify `/` and `/docs/guides/stripe/?source=share` from both schemes; the resulting URL must keep its path and query on `https://boopity.com`. A local DNS resolver may briefly cache an earlier missing-record response.
+
+See Cloudflare's [www redirect guidance](https://developers.cloudflare.com/rules/url-forwarding/examples/redirect-www-to-root/) for the underlying redirect behavior.
+
+To undo only this addition, disable the named www rule and remove only the new www record. Do not change the Worker custom domain, email records, or application subdomains.
+
 The deployment uses trailing-slash URLs to match Astro, a real 404 response instead of a single-page-app fallback, and basic security headers. Only hashed files under `/_astro/` receive a year-long immutable cache policy; HTML and documentation search files use Cloudflare's default revalidation behavior.
 
 ## Manual deployment and rollback
