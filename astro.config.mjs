@@ -36,13 +36,39 @@ export default defineConfig({
         },
         {
           label: "Everyday tasks",
-          items: [{ slug: "docs/guides/client-portal" }],
+          items: [
+            { slug: "docs/guides/services" },
+            { slug: "docs/guides/clients-and-pets" },
+            { slug: "docs/guides/bookings" },
+            { slug: "docs/guides/booking-rules" },
+            { slug: "docs/guides/client-portal" },
+            { slug: "docs/guides/payments" },
+          ],
         },
         {
-          label: "Looking after your installation",
+          label: "Your settings",
+          items: [
+            { slug: "docs/guides/business-and-account" },
+            { slug: "docs/guides/email" },
+            { slug: "docs/guides/resend" },
+            { slug: "docs/guides/google-sign-in" },
+            { slug: "docs/guides/stripe" },
+          ],
+        },
+        {
+          label: "Help & maintenance",
           items: [
             { slug: "docs/help/troubleshooting" },
             { slug: "docs/help/backups-and-updates" },
+          ],
+        },
+        {
+          label: "Hosting help",
+          collapsed: true,
+          items: [
+            { slug: "docs/hosting/docker-and-node" },
+            { slug: "docs/hosting/backup-and-restore" },
+            { slug: "docs/hosting/recover-access" },
           ],
         },
         { label: "Back to the website", link: "/" },

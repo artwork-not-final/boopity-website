@@ -20,3 +20,7 @@
   color: var(--sl-color-gray-2);
   margin-top: 0.6rem;
 }
+.sl-markdown-content td code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
