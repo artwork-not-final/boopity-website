@@ -6,7 +6,7 @@ description: Record money received, see all payments, and handle refunds and cor
 import GuideImage from "../../../../components/GuideImage.astro";
 import payments from "../../../../assets/screenshots/payments.png";
 
-You can record payments yourself without connecting a payment provider. To let clients pay online, [connect your Stripe account](/docs/guides/stripe/).
+You can record payments yourself without connecting a payment provider. To let clients pay online, follow the [Stripe setup walkthrough](/docs/guides/stripe/) to connect your account, make a practice payment, and switch on real payments.
 
 ## Record money you’ve received
 
@@ -40,7 +40,7 @@ Actual payments and sandbox records are separate. Totals use the current filters
 
 After you’ve enabled live checkout, a client opens a confirmed or completed booking and pays its outstanding balance through Stripe. Card details are entered on Stripe’s checkout page, not in Boopity.
 
-A cancelled or expired checkout is not a payment. If the status is still processing, wait for the provider’s result. Use **Refresh payments** or **Reconcile with provider** when checking an uncertain result; don’t ask the client to pay twice.
+A cancelled or expired checkout is not a payment. If the status is still processing, wait for the provider’s result. Use **Refresh payments** or **Check payment status** when checking an uncertain result; don’t ask the client to pay twice.
 
 ## Refunds, credits, and corrections
 
